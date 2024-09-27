@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hospital</title>
+  <link rel="stylesheet" href="tab1.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+</head>
+
+<body>
+  <div class="wrapper">
+
+    <header><a href="#" class="logo"> <i class="fas fa-hospital"></i> City Hospital </a>
+    </header>
+
+    <!-- <input type="radio" name="slider" id="home">
+    <input type="radio" name="slider" checked id="services">
+    <input type="radio" name="slider" id="about">
+    <input type="radio" name="slider" id="founders">
+    <input type="radio" name="slider" id="book">
+    <input type="radio" name="slider" id="review">
+    <input type="radio" name="slider" id="blog">
+    <nav>
+      <label for="home" class="home"><i class="fas fa-home" ></i>Home</label>
+      <label for="services" class="services"><i class="fas fa-user-md"></i>Services</label>
+      <label for="about" class="about"><i class="fas fa-map-marker-alt"></i>Contact</label>
+      <label for="founders" class="founders"><i class="fas fa-users"></i>Founders</label>
+      <label for="book" class="book"><i class="fas fa-calendar"></i>Book Appointment</label>
+      <label for="review" class="review"><i class="fas fa-star-half-alt"></i>Blogs</label>
+      <label for="blog" class="blog"><i class="fas fa-notes-medical"></i>Login</label> -->
+    <div class="slider"></div>
+    </nav>
+
+  </div>
+  <style>
+    * {
+      box-sizing: border-box;
+      padding: 10px;
+    }
+
+    .dropbtn {
+      background-color: #04AA6D;
+      color: white;
+      padding: 16px;
+      font-size: 16px;
+      border: none;
+      cursor: pointer;
+      margin-bottom: 5rem;
+    }
+
+    .dropbtn:hover,
+    .dropbtn:focus {
+      background-color: #3e8e41;
+    }
+
+    #myInput {
+      box-sizing: border-box;
+      background-image: url('searchicon.png');
+      background-position: 14px 12px;
+      background-repeat: no-repeat;
+      font-size: 16px;
+      padding: 14px 20px 12px 45px;
+      border: none;
+      border-bottom: 1px solid #ddd;
+    }
+
+    #myInput:focus {
+      outline: 3px solid #ddd;
+    }
+
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: block;
+      background-color: #f6f6f6;
+      min-width: 230px;
+      overflow: auto;
+      border: 1px solid #ddd;
+      z-index: 1;
+    }
+
+    .dropdown-content a {
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+    }
+
+    .dropdown a:hover {
+      background-color: #ddd;
+    }
+
+    .show {
+      display: block;
+    }
+
+    .data-container {
+      display: flex;
+    }
+  </style>
+  </head>
+
+  <body>
+
+    <h2 class="heading">Search <span>Services</span></h2>
+    <div class="data-container">
+      <div class="dropdown">
+        <button onclick="myFunction()" class="dropbtn">Services</button>
+        <div id="myDropdown" class="dropdown-content">
+          <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
+          <a href="#" id="service1">Atelectasis</a>
+          <a href="#" id="service2">Cardiomegaly</a>
+          <a href="#" id="service3">Consolidation</a>
+          <a href="#" id="service4">Edema</a>
+          <a href="#" id="service5">Effusion</a>
+          <a href="#" id="service6">Emphysema</a>
+          <a href="#" id="service7">Enlarged Cardiomediastinum</a>
+          <a href="#" id="service8">Fibrosis</a>
+          <a href="#" id="service9">Fracture</a>
+          <a href="#" id="service10">Hernia</a>
+          <a href="#" id="service11">Infiltration</a>
+          <a href="#" id="service12">Lung Lesion</a>
+          <a href="#" id="service13">Lung Opacity</a>
+          <a href="#" id="service14">Mass</a>
+          <a href="#" id="service15">Nodule</a>
+          <a href="#" id="service16">Pleural_Thickening</a>
+          <a href="#" id="service17">Pneumoni</a>
+          <a href="#" id="service18">Pneumothorax</a>
+        </div>
+      </div>
+      <div class="put-file">
+        <p id="selected-test"></p>
+        <input class="input-image" type="file" onchange="readURL(this)" accept="image/*">
+        <button type="submit" value="Submit">Submit</button>
+      </div>
+      <div class="results">
+        <p id="result-answer">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sapiente veniam ad doloribus
+          saepe.</p>
+      </div>
+
+    </div>
+    <script>
+      function myFunction() {
+        document.getElementById("myDropdown").classList.toggle("show");
+      }
+
+
+      function close() {
+        document.getElementById("myInput").close;
+      }
+
+
+      function filterFunction() {
+        var input, filter, ul, li, a, i;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        div = document.getElementById("myDropdown");
+
+        a = div.getElementsByTagName("a");
+        for (i = 0; i < a.length; i++) {
+          txtValue = a[i].textContent || a[i].innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            a[i].style.display = "";
+          } else {
+            a[i].style.display = "none";
+          }
+        }
+      }
+      let selected_service = ''
+      let label = document.getElementById('selected-test')
+      let t1 = document.getElementById("service1")
+      let t2 = document.getElementById("service2")
+      let t3 = document.getElementById("service3")
+      let t4 = document.getElementById("service4")
+      let t5 = document.getElementById("service5")
+      let t6 = document.getElementById("service6")
+      let t7 = document.getElementById("service7")
+      let t8 = document.getElementById("service8")
+      let t9 = document.getElementById("service9")
+      let t10 = document.getElementById("service10")
+      let t11 = document.getElementById("service11")
+      let t12 = document.getElementById("service12")
+      let t13 = document.getElementById("service13")
+      let t14 = document.getElementById("service14")
+      let t15 = document.getElementById("service15")
+      let t16 = document.getElementById("service16")
+      let t17 = document.getElementById("service17")
+      let t18 = document.getElementById("service18")
+
+      t1.addEventListener('click', () => {
+        label.innerHTML = "Atelectasis"
+        selected_service = '1'
+      })
+      t2.addEventListener('click', () => {
+        label.innerHTML = "Cardiomegaly"
+        selected_service = '2'
+      })
+      t3.addEventListener('click', () => {
+        label.innerHTML = "Consolidation"
+        selected_service = '3'
+      })     
+      t4.addEventListener('click', () => {
+        label.innerHTML = "Edema"
+        selected_service = '4'
+      })      
+      t5.addEventListener('click', () => {
+        label.innerHTML = "Effusion"
+        selected_service = '5'
+      })  
+      t6.addEventListener('click', () => {
+        label.innerHTML = "Emphysema"
+        selected_service = '6'
+      })     
+      t7.addEventListener('click', () => {
+        label.innerHTML = "Enlarged Cardiomediastinum"
+        selected_service = '7'
+      })      
+      t8.addEventListener('click', () => {
+        label.innerHTML = "Fibrosis"
+        selected_service = '8'
+      })     
+      t9.addEventListener('click', () => {
+        label.innerHTML = "Fracture"
+        selected_service = '9'
+      })    
+      t10.addEventListener('click', () => {
+        label.innerHTML = "Hernia"
+        selected_service = '10'
+      })      
+      t11.addEventListener('click', () => {
+        label.innerHTML = "Infiltration"
+        selected_service = '11'
+      })      
+      t12.addEventListener('click', () => {
+        label.innerHTML = "Lung Lesion"
+        selected_service = '12'
+      })      
+      t13.addEventListener('click', () => {
+        label.innerHTML = "Lung Opacity"
+        selected_service = '13'
+      })     
+      t14.addEventListener('click', () => {
+        label.innerHTML = "Mass"
+        selected_service = '14'
+      })     
+      t15.addEventListener('click', () => {
+        label.innerHTML = "Nodule"
+        selected_service = '15'
+      })      
+      t16.addEventListener('click', () => {
+        label.innerHTML = "Pleural_Thickening"
+        selected_service = '16'
+      })     
+      t17.addEventListener('click', () => {
+        label.innerHTML = "Pneumoni"
+        selected_service = '17'
+      })      
+      t18.addEventListener('click', () => {
+        label.innerHTML = "Pneumothorax"
+        selected_service = '18'
+      })
+      </script>
+
+
+</body>
+
+</html>

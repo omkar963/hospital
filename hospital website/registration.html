@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form  id="my-form-id">
+        <input type="text" name="captcha" value="" placeholder="captcha"><br>
+        <input type="text" name="password" value="11111" placeholder="password"><br>
+        <input type="text" name="password_reenter" value="11111" placeholder="confirm password"><br>
+        <input type="text" name="email" value="a@a.com" placeholder="email"><br>
+        <input type="text" name="roll" value="11" placeholder="roll no"><br>
+        <input type="text" name="name" value="Jayesh" placeholder="name"><br>
+        <input type="text" name="phone_number" value="9940420232" placeholder="phone no"><br>
+        <input type="text" name="referral" value="TESTREFERRAL" placeholder="referral"><br>
+        <input type="submit" value="Login">
+    </form>
+    <img src="" alt="" id="my-image">
+    <script src="./js/user.js"></script>
+    <script>
+        var base64data = {}
+        var image = document.getElementById("my-image")
+        var form = document.getElementById('my-form-id');
+
+        window.onload = function (e) {
+            get_captcha()
+        }
+        function get_captcha() {
+            data = null;
+
+            xhr = new XMLHttpRequest();
+            xhr.withCredentials = true;
+
+            xhr.addEventListener("readystatechange", function () {
+                if (this.readyState === this.DONE) {
+                    base64data = JSON.parse(this.responseText)
+                    image.src = `data:image/jpeg;base64,${base64data["captchab64"].replaceAll('-','+').replaceAll("_","/")}`;
+                }
+            });
+
+            xhr.open("GET", "http://127.0.0.1:8000/auth/captcha");
+
+            xhr.send(data);
+
+        }
+
+
+        form.onsubmit = function (e) {
+            // stop the regular form submission
+            e.preventDefault();
+
+            send_data(form,"/auth/register",base64data["session_id"])
+            get_captcha()
+        };
+
+
+
+    </script>
+</body>
+
+</html>
